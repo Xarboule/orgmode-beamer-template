@@ -1,0 +1,152 @@
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation]
+#+BEAMER_FRAME_LEVEL: 2
+#+BEAMER_THEME: 
+#+BEAMER_FONT_THEME: structurebold
+#+BEAMER_ENV:
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+OPTIONS: H:2 toc:nil |:t \n:t
+#+BEAMER_HEADER: \graphicspath{{./IMGs/}}
+#+LaTeX_HEADER: \usepackage[binary-units]{siunitx}
+#+LaTeX_HEADER: \sisetup{per-mode=symbol,detect-all}
+#+LaTeX_HEADER: \setbeamertemplate{footline}[frame number]
+#+OPTIONS: author:nil
+#+LaTeX_HEADER: \author[shortname]{Author 1 \textsuperscript{1} \and Author 2 \inst{2} \and Author 3 \inst{1} \and Author 4 \inst{3} \vspace{7mm}}
+#+LaTeX_HEADER: \institute[shortinst]{\textsuperscript{1}University of Somewhere \and \vspace{-3mm} \inst{2} Institute of somewhere else \and \vspace{-3mm} \inst{3} A random company \and \vspace{5mm} My wonderful conference \vspace{-4mm}}
+#+TITLE: My incredible presentation in org mode
+
+#+BEGIN_COMMENT
+=> If you want to set the date (otherwise, it takes the document compilation date)
+#+DATE: Tuesday, June 22nd
+
+#+END_COMMENT
+
+
+* Slides
+
+** Simple slide
+
+/Here you can write text in only one column/
+
+This is regular text, *bold text*, /italic text/
+
+A list:
+- Hello
+- World
+
+
+** Double column
+
+Here is an example of a 2 column slide.
+
+*** Left block
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.6
+    :END:
+1. I can
+2. List
+3. Elements
+4. Here
+*** Right block
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_col: 0.4
+    :END:
+
+  #+ATTR_LATEX: width=\textwidth
+  [[./IMGs/emacs.png]]
+
+/And a picture can fit in this column/
+
+
+* Features
+
+** Pictures
+*** Here is a picture:
+You can add pictures in your slides.
+
+#+ATTR_LATEX: width=\textwidth
+[[./IMGs/glacier.jpg]]
+
+
+
+** Intel Optane DCPMM performances
+
+*** A table :
+
+#+ATTR_LATEX: :float nil :align l|c|r
+| Left alignment | Center | Right alignment |
+|----------------+--------+-----------------|
+| Test 1         | Test 2 | Test 3          |
+| *Hello*          |        | /World/           |
+
+
+** Colors
+*** Let's add some color
+[[color:red][This is red]]
+[[color:orange][This is orange]]
+[[color:blue][This is blue]]
+
+You can specify colors using the following syntax :
+#+BEGIN_SRC
+[[color:red][This is red.]]
+#+END_SRC
+
+
+** Code
+*** A code snippet:
+
+\fontsize{8pt}{10pt}
+#+begin_src C
+
+  #include<stdlib.h>
+  #include<unistd.h>
+  #include<fcntl.h>
+
+  int main(){
+
+    char *strs[7] = {"a", "b", "c", "d", "e", "f", "g"};
+    int fd = open("testfile", O_CREAT|O_RDWR);
+
+    for(int i=0; i<7; i++){
+      write(fd, strs[i], 1);
+    }
+    fsync(fd);
+    // =========> Persistence guarantee
+    close(fd);
+  }
+
+#+end_src
+
+** Units
+
+Units can be used as in \LaTeX.
+
+- \SI{4}{\kibi\byte}
+- \SI{9.81}{\meter\per\second\square}
+- \SI{88}{mph}
+- \SI{2.21}{\giga\watt}
+
+* Misc
+
+** Exporting this presentation
+*** 
+To export:
+1. Open this file in emacs
+2. Press Ctrl+c Ctrl+e
+3. Press `l` (for \LaTeX)
+4. Press `P` (for PDF with Beamer)
+
+
+*** Emacs config
+
+Some of these features are set up with [[https://github.com/Xarboule/dotfiles/blob/main/emacs/.emacs.d/configuration.org][my emacs config file, available on github.]]
+
+* The End
+** End
+
+Issues, forks,  and pull requests are welcome!
+
+_/Contact :/_ Rémi Dulong, remi.dulong@unine.ch
